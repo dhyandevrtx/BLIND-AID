@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blind Aid - Assistive Technology Solution</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #3b82f6;
+            --accent-blue: #60a5fa;
+            --dark-gray: #1f2937;
+            --medium-gray: #6b7280;
+            --light-gray: #f9fafb;
+            --white: #ffffff;
+            --success-green: #10b981;
+            --professional-navy: #0f172a;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            letter-spacing: -0.025em;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--medium-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--professional-navy) 0%, var(--primary-blue) 100%);
+            color: var(--white);
+            padding: 140px 0 100px;
+            position: relative;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--secondary-blue);
+            color: var(--white);
+            padding: 12px 32px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--secondary-blue);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 12px 32px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary-blue);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: var(--light-gray);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        .section-description {
+            font-size: 1.125rem;
+            color: var(--medium-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+        }
+
+        .feature-card p {
+            color: var(--medium-gray);
+            line-height: 1.7;
+        }
+
+        /* Technology Section */
+        .technology {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .tech-content h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--dark-gray);
+            letter-spacing: -0.025em;
+        }
+
+        .tech-description {
+            font-size: 1.125rem;
+            color: var(--medium-gray);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .tech-specs {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .tech-specs li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            position: relative;
+            padding-left: 2rem;
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+
+        .tech-specs li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-green);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .device-showcase {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            height: 450px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .device-showcase::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px;
+            height: 70px;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            border-radius: 35px;
+            animation: devicePulse 3s infinite;
+        }
+
+        @keyframes devicePulse {
+            0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        .device-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        /* Statistics Section */
+        .statistics {
+            padding: 100px 0;
+            background: var(--professional-navy);
+            color: var(--white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: var(--light-gray);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--dark-gray);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--light-gray);
+            border-radius: 8px;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--white);
+        }
+
+        .contact-details h4 {
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-details p {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        .contact-details a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+
+        .developer-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .developer-section h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+        }
+
+        .linktree-btn {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #39e09b 0%, #00d4aa 100%);
+            color: var(--white);
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .linktree-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(57, 224, 155, 0.3);
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--professional-navy);
+            color: var(--white);
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tech-grid,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* --- Custom Modern Effects --- */
+        /* Glassmorphism Header */
+        header {
+            background: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-bottom: 1px solid rgba(30, 58, 138, 0.08);
+        }
+
+        /* Feature Card Animated Border */
+        .feature-card {
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(30, 58, 138, 0.07), 0 1.5px 6px rgba(30, 58, 138, 0.04);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            z-index: 0;
+            border-radius: 18px;
+            background: linear-gradient(120deg, var(--primary-blue), var(--accent-blue), var(--secondary-blue), var(--primary-blue));
+            background-size: 300% 300%;
+            animation: borderGradient 4s ease infinite;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        .feature-card > * {
+            position: relative;
+            z-index: 1;
+        }
+        @keyframes borderGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .feature-card:hover {
+            box-shadow: 0 16px 40px rgba(30, 58, 138, 0.13), 0 2px 8px rgba(30, 58, 138, 0.07);
+            transform: translateY(-8px) scale(1.025);
+            border-color: var(--accent-blue);
+        }
+
+        /* Glowing Button Effect */
+        .btn-primary {
+            box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 0 16px 4px rgba(59, 130, 246, 0.18), 0 2px 8px rgba(30, 58, 138, 0.07);
+            transform: translateY(-2px) scale(1.04);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Blind Aid</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#statistics">Impact</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Assistive Technology Solution</h1>
+                <p class="subtitle">Advanced AI-powered smart glasses system designed to enhance independence and mobility for blind and visually impaired individuals</p>
+                <div class="hero-buttons">
+                    <a href="#features" class="btn-primary">Explore Features</a>
+                    <a href="#contact" class="btn-secondary">Request Information</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Advanced Technology Features</h2>
+                <p class="section-description">Comprehensive assistive technology system combining AI, computer vision, and intuitive user interfaces</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Powered Object Recognition</h3>
+                    <p>Real-time object detection using advanced deep learning models running on Raspberry Pi 5. Identifies people, vehicles, stairs, obstacles, and navigation hazards with high accuracy.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🎙️</div>
+                    <h3>Intelligent Voice Assistant</h3>
+                    <p>Natural language processing with wake word activation. Voice commands for environmental queries, system status, and navigation requests with contextual responses.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🗺️</div>
+                    <h3>GPS Navigation System</h3>
+                    <p>Integration with Google Maps API providing turn-by-turn voice navigation. Real-time route optimization and location-based services for independent travel.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📳</div>
+                    <h3>Haptic Feedback System</h3>
+                    <p>Directional vibration motors providing tactile navigation cues and obstacle alerts. Customizable vibration patterns for different environmental conditions.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">💾</div>
+                    <h3>Offline Processing Capability</h3>
+                    <p>Local processing ensures functionality without internet dependency. Pre-trained models stored on device for consistent performance in any environment.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🔋</div>
+                    <h3>Extended Battery Performance</h3>
+                    <p>Energy-efficient system design with rechargeable battery technology. Optimized power management for all-day usage in professional and personal settings.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="technology" class="technology">
+        <div class="container">
+            <div class="tech-grid">
+                <div class="tech-content fade-in">
+                    <h2>Technical Specifications</h2>
+                    <p class="tech-description">Blind Aid represents the convergence of cutting-edge artificial intelligence, computer vision, and wearable technology, engineered for reliability and performance in real-world applications.</p>
+                    
+                    <ul class="tech-specs">
+                        <li>Raspberry Pi 5 processing unit with ARM Cortex-A76 CPU</li>
+                        <li>High-resolution camera with 120° field of view</li>
+                        <li>Pre-trained YOLO and MobileNet object detection models</li>
+                        <li>Google Maps API with offline caching capability</li>
+                        <li>Directional haptic feedback motors (4-channel)</li>
+                        <li>High-fidelity audio output with bone conduction option</li>
+                        <li>Lightweight titanium frame (under 150g)</li>
+                        <li>Compact processing unit (120mm x 80mm x 40mm)</li>
+                        <li>IP54 weather resistance rating</li>
+                        <li>8+ hour continuous operation battery</li>
+                    </ul>
+                </div>
+                
+                <div class="device-showcase fade-in">
+                    <div class="device-text">Smart Glasses System Architecture</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="statistics" class="statistics">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Global Impact Potential</h2>
+                <p class="section-description">Addressing the worldwide need for advanced assistive technology solutions</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <div class="stat-number">285M</div>
+                    <div class="stat-label">Visually impaired individuals worldwide</div>
+                </div>
+                
+                <div class="stat-item fade-in">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Object detection accuracy</div>
+                </div>
+                
+                <div class="stat-item fade-in">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Continuous assistance capability</div>
+                </div>
+                
+                <div class="stat-item fade-in">
+                    <div class="stat-number">8+</div>
+                    <div class="stat-label">Hours of battery life</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Contact</h2>
+                <p class="section-description">Get in touch for technical specifications, partnership opportunities, or project inquiries</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info fade-in">
+                    <h3>Contact Information</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p><a href="mailto:dhyandev027@gmail.com">dhyandev027@gmail.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">💼</div>
+                        <div class="contact-details">
+                            <h4>Project Type</h4>
+                            <p>Assistive Technology Development</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🏢</div>
+                        <div class="contact-details">
+                            <h4>Inquiries</h4>
+                            <p>Technical Specifications, Partnerships, Research Collaboration</p>
+                        </div>
+                    </div>
+                    
+                    <div class="developer-section">
+                        <h4>Developer Profile</h4>
+                        <p>Connect with the developer for comprehensive project information, technical documentation, and professional portfolio.</p>
+                        <a href="https://linktr.ee/DhyandevRTX" target="_blank" class="linktree-btn">
+                            🔗 View Developer Profile
+                        </a>
+                    </div>
+                </div>
+                
+                <form class="contact-form fade-in">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--dark-gray); font-weight: 600;">Send Message</h3>
+                    
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Professional Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="organization">Organization/Institution</label>
+                        <input type="text" id="organization" name="organization">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Please describe your inquiry, partnership interest, or technical questions..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Blind Aid</h3>
+                    <p>Assistive technology solution leveraging artificial intelligence and computer vision to enhance independence for blind and visually impaired individuals.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Technology</h3>
+                    <ul class="footer-links">
+                        <li><a href="#features">AI Object Detection</a></li>
+                        <li><a href="#technology">Technical Specs</a></li>
+                        <li><a href="#statistics">Performance Data</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:dhyandev027@gmail.com">Professional Email</a></li>
+                        <li><a href="https://linktr.ee/DhyandevRTX" target="_blank">Developer Profile</a></li>
+                        <li><a href="#contact">Get in Touch</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Blind Aid Project. Assistive technology development. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header behavior
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(20px)';
+            } else {
+                header.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
+                header.style.backgroundColor = 'var(--white)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Form handling
+        document.querySelector('.contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const submitBtn = e.target.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Sending Message...';
+            submitBtn.style.background = 'var(--medium-gray)';
+            
+            setTimeout(() => {
+                submitBtn.textContent = 'Message Sent Successfully';
+                submitBtn.style.background = 'var(--success-green)';
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = 'var(--primary-blue)';
+                    e.target.reset();
+                }, 2000);
+            }, 1500);
+        });
+
+        // Button interactions
+        document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+            btn.addEventListener('mousedown', function() {
+                this.style.transform = 'translateY(0px) scale(0.98)';
+            });
+            
+            btn.addEventListener('mouseup', function() {
+                this.style.transform = 'translateY(-2px) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
