@@ -1,118 +1,40 @@
-# BLIND-AID
-👓 Blind Aid – AI-Powered Smart Glasses for the Visually Impaired
-Blind Aid is an intelligent, AI-driven wearable system designed to assist visually impaired individuals in understanding their surroundings and navigating both indoor and outdoor environments with confidence. This innovation combines real-time computer vision, audio and haptic feedback, GPS-based navigation, and voice interaction – all packed into a lightweight and portable system powered by a Raspberry Pi 5. The primary objective of this project is to enhance the independence and safety of visually challenged individuals through accessible and affordable technology.
 
-🧠 System Overview
-The "brain" of the device is a Raspberry Pi 5, which is housed in a compact side bag worn by the user. This bag is connected to a pair of smart glasses that contain a camera module, microphone, and small speaker or earphone jack. All components are battery-powered and optimized for energy efficiency.
 
-The system operates entirely offline, with no need for constant internet access (except for GPS/map initialization), and leverages AI models that run directly on the Raspberry Pi.
+## 🦯 Drishya Sahayak (Blind Aid)
 
-🔍 Key Features (In-Depth)
-🧠 AI-Powered Object Detection
-Uses a camera mounted on the eyeglasses to capture live video.
+**Drishya Sahayak** is an AI-powered smart vision assistant designed to support visually impaired individuals, helping them navigate their surroundings and public spaces with confidence and safety. Built around the powerful **Raspberry Pi 5**, the system is compactly carried in a **side bag** and connected to a pair of **AI-enabled smart glasses** equipped with a camera.
 
-Processes each frame in real-time using computer vision models (TensorFlow Lite or YOLO on edge).
+### 🔍 Key Features
 
-Detects and identifies common obstacles like:
+* **🔎 AI Object Detection**: Real-time recognition of people, vehicles, obstacles, and landmarks using computer vision.
+* **🎧 Audio Feedback**: Voice alerts through speaker or headphone, guiding the user with natural instructions (e.g., "Obstacle ahead", "Stairs to your left").
+* **📍 GPS Navigation**: Turn-by-turn guidance using **Google Maps API**, ideal for outdoor navigation with spoken directions to destinations.
+* **🎙️ Voice Assistant**: Wake-word-activated assistant that can respond to commands like “What’s ahead?”, “Battery status?”, “Guide to market”.
+* **📳 Vibration Feedback**: Direction-based or distance-based vibrations to alert the user in noisy environments.
+* **🔋 Rechargeable Battery**: Efficient and portable power system enabling long-duration use.
 
-People
+### 🧠 System Overview
 
-Vehicles
+The brain of the system is a **Raspberry Pi 5**, selected for its excellent processing capabilities. The Pi runs an AI model for real-time object detection and handles GPS-based navigation. It communicates with the user via voice alerts and haptic feedback. A small camera is mounted on a wearable glasses frame, giving a direct line of sight similar to a human perspective.
 
-Poles
+The Raspberry Pi is housed in a **compact, lightweight side bag**, making the entire setup both discreet and comfortable to wear for extended periods.
 
-Walls
+### 🎯 Impact
 
-Stairs (up/down)
+Drishya Sahayak aims to:
 
-Doors
+* Empower visually impaired individuals with real-time awareness of their surroundings.
+* Provide enhanced independence through seamless outdoor navigation.
+* Reduce reliance on others and increase confidence in daily activities.
+* Promote inclusion and equal access to public infrastructure.
 
-Detected objects are interpreted contextually to give smart feedback about danger or navigation suggestions.
+### 🛠️ Technologies Used
 
-🔊 Real-Time Voice Alerts
-Converts detection results into spoken voice alerts using text-to-speech (TTS).
+* **Raspberry Pi 5**
+* **OpenCV / TensorFlow / YOLO** (for AI vision)
+* **Google Maps API** (for GPS navigation)
+* **Text-to-Speech (TTS) libraries**
+* **Custom vibration and audio circuit**
+* **Python**
 
-Audio is played via a speaker or headphones connected to the system.
-
-Examples:
-
-“Stairs ahead on the left”
-
-“Pole in front. Step aside”
-
-“Empty path. You’re clear”
-
-🗺️ GPS Navigation with Google Maps API
-Outdoor navigation feature using GPS module and Google Maps API.
-
-Offers turn-by-turn audio guidance when the user sets a destination via voice.
-
-Supports common phrases like:
-
-“Navigate to railway station”
-
-“Guide me to school”
-
-Handles rerouting if the user changes direction or misses a turn.
-
-📳 Directional Vibration Feedback
-Vibration motors placed on left and right side of the frame or wristband.
-
-Alerts the user with silent cues:
-
-Left or right vibration = direction change
-
-Both sides = obstacle ahead
-
-Stronger vibration = closer distance
-
-Useful in crowded or noisy environments where voice alerts might be missed.
-
-🎙️ Voice Assistant
-Activated via wake word (e.g., "Hello Aid").
-
-Accepts a limited set of offline voice commands for interaction.
-
-Example commands:
-
-“What’s ahead?”
-
-“How far to destination?”
-
-“Battery status”
-
-“Start navigation to market”
-
-The assistant improves usability without requiring buttons or screens.
-
-🔋 Power & Portability
-Fully powered by a rechargeable battery system (can be power bank or lithium battery).
-
-Designed to last 6–8 hours on a single charge.
-
-Compact, lightweight, and wearable design – discreet enough to be used comfortably in public.
-
-🛠️ Tech Stack
-Component	Tool/Tech Used
-Core Processing Unit	Raspberry Pi 5
-Programming Language	Python
-Object Detection	TensorFlow Lite / OpenCV
-Voice Alerts	pyttsx3 or gTTS + VLC/omxplayer
-Voice Commands	Vosk or Picovoice for offline ASR
-GPS Navigation	Google Maps API + GPS Module
-Vibration Feedback	PWM + Vibration motors
-Power Supply	5V Rechargeable Battery/Power Bank
-
-🎯 Goal & Vision
-This project aims to empower the blind and visually impaired with technology that helps them:
-
-Walk safely in unfamiliar places
-
-Detect obstacles and avoid accidents
-
-Receive directions to a destination
-
-Interact with the system using just their voice
-
-Maintain independence and dignity
-
+---
