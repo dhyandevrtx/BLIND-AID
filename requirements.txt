@@ -1,0 +1,14 @@
+opencv-python
+torch
+torchvision
+pyttsx3
+speechrecognition
+pyaudio
+geopy
+requests
+Flask
+pillow
+transformers
+ultralytics
+gtts
+playsound
